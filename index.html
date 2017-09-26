@@ -14,9 +14,20 @@
             <a class="navbar-brand" href="#">About</a>
             <a class="navbar-brand" href="#">Contact</a>
         </nav>
-        <div class="content">
-            <div class="row project-view">
-                <div class="col-md-4" id="project-selector">
+        <div id="content">
+
+        </div>
+        <aside>
+            <div class="row" id="project-input">
+                <form class="form-inline">
+                    <label class="sr-only" for="inlineFormInput">Name</label>
+                    <input type="text" class="form-control" id="inlineFormInput" placeholder="New project">
+
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+            <div class="row" id="project-selector">
+                <div class="col-12">
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-action justify-content-between">
                             ZHAW - Web3
@@ -31,21 +42,8 @@
                             <span class="badge badge-default badge-pill">1</span>
                         </li>
                     </ul>
-
                 </div>
-                <div class="col-md-8" id="project-input">
-                    <form class="form-inline">
-                        <label class="sr-only" for="inlineFormInput">Name</label>
-                        <input type="text" class="form-control" id="inlineFormInput" placeholder="New project">
-
-                        <button type="submit" class="btn btn-primary">Create</button>
-                    </form>
-                </div>
-
             </div>
-        </div>
-        <aside>
-
         </aside>
     </body>
 </html>
