@@ -1,0 +1,9 @@
+.btn.btn-info
+{
+    margin-top: 50px;
+}
+
+.btn.btn-info:hover {
+    background-color: #115D76;
+    border-color: #115D76;
+}
