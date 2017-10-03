@@ -1,0 +1,8 @@
+{
+  "name": "To do list",
+  "dependencies":
+  {
+    "riot": "3.7.3"
+  }
+
+}
