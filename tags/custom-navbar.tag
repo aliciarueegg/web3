@@ -4,11 +4,11 @@
                         data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Issue Tracker</a>
+                <a class="navbar-brand" href="../web3/index.html">Issue Tracker</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                                 <li class="nav-item">
-                                        <a class="nav-link" href="to-do-list.html">To do list
+                                        <a class="nav-link" href="../web3/to-do-list.html">To do list
                                                 <span class="sr-only">(current)</span>
                                         </a>
                                 </li>

@@ -6,3 +6,13 @@
     background-color: #f7f7f7;
 }
 
+.list-group-item:first-child
+{
+    background-color: cadetblue;
+    color: white;
+}
+
+input#inlineFormInput
+{
+    width: 80%;
+}
