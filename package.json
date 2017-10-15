@@ -3,13 +3,11 @@
   "description": "This is a to do list",
   "main": "index.js",
   "author": "Kaspar, Louis, Alicia",
-  "dependencies":
-  {
-    "riot": "3.7.3"
+  "dependencies": {
+    "riot": "3.7.3",
+    "riotgear": "^3.5.0"
   },
-  "scripts":
-  {
+  "scripts": {
     "start": "node server.js"
   }
-
 }

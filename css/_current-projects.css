@@ -1,8 +1,18 @@
 #current-projects
 {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     padding: 30px;
     background-color: #f7f7f7;
 }
 
+.list-group-item:first-child
+{
+    background-color: cadetblue;
+    color: white;
+}
+
+input#inlineFormInput
+{
+    width: 80%;
+}
