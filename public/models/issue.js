@@ -10,3 +10,4 @@ function Issue(title, done, deleted, createDate) {
 Issue.prototype.add = function() {
 
 };
+

@@ -14,22 +14,26 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
         <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-        <link href="css/main.css" rel="stylesheet">
+        <link href="public/css/main.css" rel="stylesheet">
+
     </head>
     <body>
         <custom-navbar></custom-navbar>
         <home></home>
+        <current-projects></current-projects>
+        <new-issue></new-issue>
+        <current-issues></current-issues>
 
         <script src="node_modules/riot/riot+compiler.min.js"></script>
 
-
-        <script type="riot/tag" src="tags/custom-navbar.tag"></script>
-        <script type="riot/tag" src="tags/current-projects.tag"></script>
-        <script type="riot/tag" src="tags/new-issue.tag"></script>
-        <script type="riot/tag" src="tags/current-issues.tag"></script>
-        <script type="riot/tag" src="tags/home.tag"></script>
+        <script type="riot/tag" src="public/tags/custom-navbar.tag"></script>
+        <script type="riot/tag" src="public/tags/current-projects.tag"></script>
+        <script type="riot/tag" src="public/tags/new-issue.tag"></script>
+        <script type="riot/tag" src="public/tags/current-issues.tag"></script>
+        <script type="riot/tag" src="public/tags/home.tag"></script>
 
         <script>riot.mount('custom-navbar')</script>
+        <script>riot.mount('current-projects')</script>
         <script>riot.mount('projects')</script>
         <script>riot.mount('new-issue')</script>
         <script>riot.mount('current-issues')</script>
