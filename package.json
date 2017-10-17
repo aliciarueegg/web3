@@ -4,7 +4,9 @@
   "main": "index.js",
   "author": "Kaspar, Louis, Alicia",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "morgan": "^1.9.0",
     "riot": "3.7.3",
     "riotgear": "^3.5.0"
   },
