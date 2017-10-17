@@ -27,11 +27,9 @@
             </tbody>
         </table>
     </div>
-
-
-
 </current-issues>
 
-    <script>
+<script>
 
-    </script>
+
+</script>
