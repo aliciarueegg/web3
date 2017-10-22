@@ -1,6 +1,6 @@
 *.swp
 
-.idea/
+.idea
 .idea/workspace.xml
 
 lib-cov
@@ -18,3 +18,5 @@ results
 
 node_modules
 npm-debug.log
+
+yarn.lock
