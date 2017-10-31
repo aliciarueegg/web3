@@ -31,4 +31,8 @@
             </div>
         </div>
     </div>
+
+    <new-issue></new-issue>
+    <current-issues></current-issues>
+
 </current-projects>
