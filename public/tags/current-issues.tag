@@ -12,24 +12,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th><input id="checkBox_issue1" type="checkbox"></th>
-                    <td>Read current documentary</td>
-                    <td>05.10.2017</td>
+                <tr each={ issues }>
+                    <th><input id="checkBox_issue1" type="checkbox" checked={ done }></th>
+                    <td> { title } </td>
+                    <td> { date } </td>
                     <td><i class="fa fa-trash"></i></td>
-                </tr>
-                <tr>
-                <th><input id="checkBox_issue2" type="checkbox" checked></th>
-                <td><s>Drink a beer</s></td>
-                <td><s>06.10.2017</s></td>
-                <td><i class="fa fa-trash"></i></td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <script>
+        this.issues = [
+            { title: 'Read current documentary', date: "05.10.2017",  done: true },
+            { title: 'Drink a beer', date: "06.10.2017"},
+            { title: 'Meet friends', date: '07.10.2017', done: true }]
+    </script>
 </current-issues>
 
-<script>
-
-
-</script>

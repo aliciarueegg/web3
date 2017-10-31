@@ -13,9 +13,13 @@
                     <label class="sr-only" for="inlineFormInput">Name</label>
                     <input type="text" class="form-control" id="inlineFormInput" placeholder="new issue...">
 
-                    <button type="submit" class="btn btn-primary">Create issue</button>
+                    <button type="button" class="btn btn-primary">{ issue_button }</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        this.issue_button = "Create issue";
+    </script>
+
 </new-issue>
