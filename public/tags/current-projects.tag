@@ -25,7 +25,7 @@
                     <label class="sr-only" for="inlineFormInput">Create project</label>
                     <input type="text" class="form-control" id="inlineFormInput" placeholder="new project...">
 
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary">{ create_project }</button>
                 </form>
 
             </div>
@@ -34,5 +34,9 @@
 
     <new-issue></new-issue>
     <current-issues></current-issues>
+
+    <script>
+        this.create_project = "Create Project";
+    </script>
 
 </current-projects>
