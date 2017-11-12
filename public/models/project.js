@@ -1,10 +1,10 @@
 "use strict";
 
-function Project(id,created_at,updated_at,title,active) {
-    this.id = id;
+function Project(title,id,created_at,updated_at,active) {
+    this.title = title || "";
+    this.id = id || 0;
     this.created_at = created_at || createDateAndTime();
     this.updated_at = created_at || createDateAndTime();
-    this.title = title || "";
     this.active = active || true;
     this.issues = [];
 }
