@@ -38,6 +38,7 @@
             var project = new Project(this.text);
             //Todo: Post the project to the backend
 
+
             this.items.push(project);
             this.text = this.refs.input.value = '';
         }
