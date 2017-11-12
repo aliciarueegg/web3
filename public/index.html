@@ -31,7 +31,12 @@
         <script type="riot/tag" src="tags/home.tag"></script>
 
         <script>riot.mount('custom-navbar')</script>
-        <script>riot.mount('current-projects')</script>
+        <script>riot.mount('current-projects',{
+            items:[
+                {id:'123',title: 'ZHAW',active: 'true'},
+                {id:'123',title: 'ZHAW',active: 'true'}
+            ]
+        })</script>
         <script>riot.mount('projects')</script>
         <script>riot.mount('new-issue')</script>
         <script>riot.mount('current-issues')</script>
