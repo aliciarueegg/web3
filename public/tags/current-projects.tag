@@ -15,7 +15,7 @@
                 <form class="form-inline m-1" onsubmit={add}>
 
                     <label class="sr-only" for="inlineFormInput">Create project</label>
-                    <input type="text" class="form-control" id="inlineFormInput" placeholder="new project...">
+                    <input type="text" class="form-control" id="inlineFormInput" placeholder="new project..." onkeyup={edit} ref="input">
 
                     <button type="submit" class="btn btn-primary">{ create_project }</button>
                 </form>
@@ -28,19 +28,31 @@
     <current-issues></current-issues>
 
     <script>
+
+
     this.create_project = "Create Project";
 
     this.items = opts.items;
 
+    edit(e){
+    this.pro_text = e.target.value
+    }
+
     add(e){
         e.preventDefault();
-        if(this.text){
-            var project = new Project(this.text);
+
+        if(this.pro_text){
+            var project = new Project(this.pro_text);
+            console.log(project);
+            localStorage.setItem(this.pro_text, JSON.stringify(project));
+
             //Todo: Post the project to the backend
 
 
             this.items.push(project);
-            this.text = this.refs.input.value = '';
+
+            console.log(this);
+            this.pro_text = this.refs.input.value = '';
         }
     }
 
