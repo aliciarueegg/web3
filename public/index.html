@@ -11,6 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
         <script src="./models/project.js"></script>
+        <script src="./models/issue.js"></script>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -36,14 +37,7 @@
 
         <script>riot.mount('custom-navbar')</script>
         <script>riot.mount('current-projects',{
-            items:[
-                {id:'123',title: 'ZHAW',active: 'true',issues:[
-                    { title: 'Read current documentary', date: "05.10.2017",  done: true },
-                    { title: 'Drink a beer', date: "06.10.2017"},
-                    { title: 'Meet friends', date: '07.10.2017', done: true },
-                    { title: 'Test', date: '08.10.2017' }]},
-                {id:'234',title: 'Work',active: 'true',issues:[]}
-            ]
+            items:[]
         })</script>
 
         <script>riot.mount('projects')</script>

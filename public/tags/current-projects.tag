@@ -43,7 +43,7 @@
 
         if(this.pro_text){
             var project = new Project(this.pro_text);
-            console.log(project);
+            //console.log(project);
             localStorage.setItem(project.title, JSON.stringify(project));
 
             //Todo: Post the project to the backend
@@ -51,19 +51,19 @@
 
             this.items.push(project);
 
-            console.log(this);
+            //console.log(this);
             this.pro_text = this.refs.input.value = '';
         }
     }
 
     this.on('before-mount', function() {
     // right after the tag is mounted on the page
-    console.log(localStorage);
+    //console.log(localStorage);
     for (var i = 0; i < localStorage.length; i++){
     var project = JSON.parse(localStorage.getItem(localStorage.key(i)));
     this.items.push(project);
     };
-    console.log(this.items);
+    //console.log(this.items);
     })
 
 

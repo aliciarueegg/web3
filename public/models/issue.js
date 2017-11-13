@@ -1,13 +1,13 @@
 "use strict";
 
-function Issue(done,title,updated_at,project_client_id,priority,id,client_id,project_id,created_at) {
-    this.done = done || false;
+function Issue(title,done,updated_at,project_client_id,priority,id,client_id,project_id,created_at) {
     this.title = title;
-    this.updated_at = udated_at || createDateAndTime();
+    this.done = done || false;
+    this.updated_at = updated_at || createDateAndTime();
     this.project_client_id = project_client_id;
     this.priority = priority || 0;
     this.id = id || 0;
-    this.client_id = client_id;
+    this.client_id = client_id
     this.project_id = project_id;
     this.created_at = created_at || createDateAndTime();
 }

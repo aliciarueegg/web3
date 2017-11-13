@@ -8,10 +8,10 @@
             </div>
 
             <div class="col-md-8">
-                <form class="form-inline m-1" onsubmit={add}>
+                <form class="form-inline m-1" onsubmit={add_issue}>
 
                     <label class="sr-only" for="inlineFormInput">Name</label>
-                    <input type="text" class="form-control" id="inlineFormInput" placeholder="new issue...">
+                    <input type="text" class="form-control" id="inlineFormInput" placeholder="new issue..." onkeyup={edit_issue} ref="input_issue">
 
                     <button type="button" class="btn btn-primary">{ issue_button }</button>
                 </form>
@@ -21,14 +21,27 @@
     <script>
         this.issue_button = "Create issue";
 
-    add(e){
+    edit_issue(e){
+    this.issue_text = e.target.value
+
+    }
+
+    add_issue(e){
     e.preventDefault();
-    if(this.text){
-    var issue = new Issue (this.text);
+    if(this.issue_text){
+    var issue = new Issue(this.pro_text);
+    //console.log(issue);
+    localStorage.setItem(issue.title, JSON.stringify(issue));
+
+
+
     //Todo: Post the issue to the backend
 
+
     this.items.push(issue);
-    this.text = this.refs.input.value = '';
+
+    //console.log(this);
+    this.issue_text = this.refs.input.value = '';
     }
     }
     </script>
