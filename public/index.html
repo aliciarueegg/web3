@@ -37,7 +37,11 @@
 
         <script>riot.mount('custom-navbar')</script>
         <script>riot.mount('current-projects',{
-            items:[]
+            projects:[ {title: 'Todo List',issues:[
+                { title: 'Read current documentary', date: "05.10.2017",  done: true },
+                { title: 'Drink a beer', date: "06.10.2017"},
+                { title: 'Meet friends', date: '07.10.2017', done: true },
+                { title: 'Test', date: '08.10.2017' }]}]
         })</script>
 
         <script>riot.mount('projects')</script>

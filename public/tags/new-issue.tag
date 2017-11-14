@@ -21,27 +21,26 @@
     <script>
         this.issue_button = "Create issue";
 
+
+
     edit_issue(e){
     this.issue_text = e.target.value
 
     }
-
     add_issue(e){
     e.preventDefault();
     if(this.issue_text){
-    var issue = new Issue(this.pro_text);
-    //console.log(issue);
-    localStorage.setItem(issue.title, JSON.stringify(issue));
+        var issue = new Issue(this.issue_text);
+        this.parent.project.issues.push(issue);
+
+        localStorage.setItem('projects', JSON.stringify(this.parent.parent.projects));
 
 
 
-    //Todo: Post the issue to the backend
+        //Todo: Post the issue to the backend
 
-
-    this.items.push(issue);
-
-    //console.log(this);
-    this.issue_text = this.refs.input.value = '';
+        // clear input field
+        this.issue_text = this.refs.input.value = '';
     }
     }
     </script>

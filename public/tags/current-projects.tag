@@ -4,15 +4,15 @@
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-group project m-1">
-                    <li each={ items } class="list-group-item list-group-item-action justify-content-between">
+                    <li each={ projects } class="list-group-item list-group-item-action justify-content-between">
                     { title }
-                    <span class="badge badge-default badge-pill">{ issues.length }</span>
+                    <span class="badge badge-default badge-pill">0</span>
                     </li>
                 </ul>
             </div>
 
             <div class="col-md-8">
-                <form class="form-inline m-1" onsubmit={add}>
+                <form class="form-inline m-1" onsubmit={add_project}>
 
                     <label class="sr-only" for="inlineFormInput">Create project</label>
                     <input type="text" class="form-control" id="inlineFormInput" placeholder="new project..." onkeyup={edit} ref="input">
@@ -24,48 +24,48 @@
         </div>
     </div>
 
-    <new-issue></new-issue>
-    <current-issues></current-issues>
+    <current-issues project={projects[0]}></current-issues>
 
     <script>
 
-
     this.create_project = "Create Project";
 
-    this.items = opts.items;
+    this.projects = opts.projects;
+    //var projects = new Array();
+
 
     edit(e){
-    this.pro_text = e.target.value
+        this.project_name = e.target.value;
     }
 
-    add(e){
+
+    add_project(e){
         e.preventDefault();
 
-        if(this.pro_text){
-            var project = new Project(this.pro_text);
-            //console.log(project);
-            localStorage.setItem(project.title, JSON.stringify(project));
-
+        if(this.project_name){
+            var project = new Project();
+            project.title = this.project_name;
             //Todo: Post the project to the backend
 
+            this.projects.push(project);
 
-            this.items.push(project);
+            // clear input field
+            this.project_name = this.refs.input.value = '';
+            //this.update();
+            localStorage.setItem('projects', JSON.stringify(this.projects));
 
-            //console.log(this);
-            this.pro_text = this.refs.input.value = '';
-        }
+    }
     }
 
     this.on('before-mount', function() {
     // right after the tag is mounted on the page
     //console.log(localStorage);
-    for (var i = 0; i < localStorage.length; i++){
-    var project = JSON.parse(localStorage.getItem(localStorage.key(i)));
-    this.items.push(project);
-    };
-    //console.log(this.items);
+    if (localStorage.getItem('projects')) {
+    this.projects = JSON.parse(localStorage.getItem('projects'));
+    } else {
+    console.log('ls empty');
+    }
     })
-
 
     </script>
 

@@ -7,7 +7,7 @@ function Issue(title,done,updated_at,project_client_id,priority,id,client_id,pro
     this.project_client_id = project_client_id;
     this.priority = priority || 0;
     this.id = id || 0;
-    this.client_id = client_id
+    this.client_id = client_id || guid();
     this.project_id = project_id;
     this.created_at = created_at || createDateAndTime();
 }
@@ -20,4 +20,14 @@ function createDateAndTime (){
     var date = new Date();
     var month = date.getMonth()+1;
     return date.getFullYear() + "-" + month + "-" + date.getDay() +  "T" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + "Z";
+}
+
+function guid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
 }
