@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <title>Issue tracker</title>
@@ -18,38 +19,31 @@
 
         <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
         <link href="css/main.css" rel="stylesheet">
-
-
-
     </head>
+
     <body>
-        <custom-navbar></custom-navbar>
         <home></home>
-        <current-projects></current-projects>
+        <projects></projects>
 
         <script src="../node_modules/riot/riotcompiler.min.js"></script>
 
-        <script type="riot/tag" src="tags/custom-navbar.tag"></script>
-        <script type="riot/tag" src="tags/current-projects.tag"></script>
-        <script type="riot/tag" src="tags/new-issue.tag"></script>
-        <script type="riot/tag" src="tags/current-issues.tag"></script>
         <script type="riot/tag" src="tags/home.tag"></script>
+        <script type="riot/tag" src="tags/projects.tag"></script>
+        <script type="riot/tag" src="tags/issues.tag"></script>
+        <script type="riot/tag" src="tags/new-issue.tag"></script>
 
-        <script>riot.mount('custom-navbar')</script>
-        <script>riot.mount('current-projects',{
-            projects:[ {title: 'Todo List',issues:[
-                { title: 'Read current documentary', date: "05.10.2017",  done: true },
-                { title: 'Drink a beer', date: "06.10.2017"},
-                { title: 'Meet friends', date: '07.10.2017', done: true },
-                { title: 'Test', date: '08.10.2017' }]}]
-        })</script>
-
-        <script>riot.mount('projects')</script>
-        <script>riot.mount('new-issue')</script>
-        <script>riot.mount('current-issues')</script>
-        <script>riot.mount('home')</script>
-
-
-
+        <script>
+            riot.mount('home');
+            riot.mount('projects',{
+                projects:[ {title: 'Todo List',issues:[
+                    { title: 'Read current documentary', date: "05.10.2017",  done: true },
+                    { title: 'Drink a beer', date: "06.10.2017"},
+                    { title: 'Meet friends', date: '07.10.2017', done: true },
+                    { title: 'Test', date: '08.10.2017' }]}]
+            });
+            riot.mount('issues');
+            riot.mount('new-issue');
+        </script>
     </body>
+
 </html>

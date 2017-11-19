@@ -1,4 +1,4 @@
-<current-issues>
+<issues>
     <new-issue></new-issue>
     <div class="container" id="current-issues">
         <h2> Issues </h2>
@@ -43,5 +43,5 @@
     */
 
     </script>
-</current-issues>
+</issues>
 

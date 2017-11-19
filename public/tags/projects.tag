@@ -1,4 +1,4 @@
-<current-projects>
+<projects>
     <div class="container" id="current-projects">
         <h2> Projects </h2>
         <div class="row">
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <current-issues project={projects[0]}></current-issues>
+    <issues project={projects[0]}></issues>
 
     <script>
 
@@ -69,4 +69,4 @@
 
     </script>
 
-</current-projects>
+</projects>
