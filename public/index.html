@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
         <link href="css/main.css" rel="stylesheet">
     </head>
 
@@ -25,7 +25,8 @@
         <home></home>
         <projects></projects>
 
-        <script src="../node_modules/riot/riotcompiler.min.js"></script>
+        <script src="components/riot/riot.min.js"></script>
+        <script src="components/riot/riot+compiler.min.js"></script>
 
         <script type="riot/tag" src="tags/home.tag"></script>
         <script type="riot/tag" src="tags/projects.tag"></script>
@@ -35,11 +36,21 @@
         <script>
             riot.mount('home');
             riot.mount('projects',{
-                projects:[ {title: 'Todo List',issues:[
-                    { title: 'Read current documentary', date: "05.10.2017",  done: true },
-                    { title: 'Drink a beer', date: "06.10.2017"},
-                    { title: 'Meet friends', date: '07.10.2017', done: true },
-                    { title: 'Test', date: '08.10.2017' }]}]
+                projects:[
+                    {
+                        title: 'Todo List',
+                        issues:[
+                            { title: 'Read current documentary', date: "05.10.2017",  done: true },
+                            { title: 'Drink a beer', date: "06.10.2017"},
+                            { title: 'Meet friends', date: '07.10.2017', done: true },
+                            { title: 'Test', date: '08.10.2017' }
+                        ]
+                    },
+                    {
+                        title: 'List 2',
+                        issues: []
+                    }
+                ]
             });
             riot.mount('issues');
             riot.mount('new-issue');

@@ -1,6 +1,8 @@
 <projects>
     <div class="container" id="current-projects">
+
         <h2> Projects </h2>
+
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-group project m-1">
@@ -12,60 +14,56 @@
             </div>
 
             <div class="col-md-8">
-                <form class="form-inline m-1" onsubmit={add_project}>
-
+                <form class="form-inline m-1" onsubmit={ add_project }>
                     <label class="sr-only" for="inlineFormInput">Create project</label>
                     <input type="text" class="form-control" id="inlineFormInput" placeholder="new project..." onkeyup={edit} ref="input">
-
-                    <button type="submit" class="btn btn-primary">{ create_project }</button>
+                    <button type="submit" class="btn btn-primary">Create Project</button>
                 </form>
-
             </div>
         </div>
+
     </div>
 
-    <issues project={projects[0]}></issues>
+    <issues project={ active_project }></issues>
+
+
 
     <script>
 
-    this.create_project = "Create Project";
+        this.projects = opts.projects;
 
-    this.projects = opts.projects;
-    //var projects = new Array();
+        this.active_project = this.projects[0];
 
+        this.new_project_name = '';
 
-    edit(e){
-        this.project_name = e.target.value;
-    }
+        edit(e) {
+            this.new_project_name = e.target.value;
+        }
 
+        add_project(e) {
+            e.preventDefault();
 
-    add_project(e){
-        e.preventDefault();
+            if (this.new_project_name) {
+                var project = new Project();
+                project.title = this.new_project_name;
+                this.projects.push(project);
+                save_to_localstorage();
 
-        if(this.project_name){
-            var project = new Project();
-            project.title = this.project_name;
-            //Todo: Post the project to the backend
+                this.new_project_name = this.refs.input.value = '';
+            }
+        }
 
-            this.projects.push(project);
-
-            // clear input field
-            this.project_name = this.refs.input.value = '';
-            //this.update();
+        save_to_localstorage() {
             localStorage.setItem('projects', JSON.stringify(this.projects));
+        }
 
-    }
-    }
-
-    this.on('before-mount', function() {
-    // right after the tag is mounted on the page
-    //console.log(localStorage);
-    if (localStorage.getItem('projects')) {
-    this.projects = JSON.parse(localStorage.getItem('projects'));
-    } else {
-    console.log('ls empty');
-    }
-    })
+        this.on('before-mount', function() {
+            if (localStorage.getItem('projects')) {
+                this.projects = JSON.parse(localStorage.getItem('projects'));
+            } else {
+                console.log('localstorage empty');
+            }
+        })
 
     </script>
 

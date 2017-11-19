@@ -18,15 +18,17 @@
             </div>
         </div>
     </div>
+
+
+
     <script>
-        this.issue_button = "Create issue";
 
+    this.issue_button = "Create issue";
 
-
-    edit_issue(e){
-    this.issue_text = e.target.value
-
+    edit_issue(e) {
+        this.issue_text = e.target.value
     }
+
     add_issue(e){
     e.preventDefault();
     if(this.issue_text){
