@@ -8,12 +8,12 @@
             </div>
 
             <div class="col-md-8">
-                <form class="form-inline m-1" id="issueForm">
+                <form class="form-inline m-1" id="issueForm" onsubmit={ add_issue }>
 
                     <label class="sr-only" for="newIssueName">Name</label>
-                    <input type="text" class="form-control" id="newIssueName" name="name" placeholder="new issue...">
+                    <input type="text" class="form-control" id="newIssueName" name="name" placeholder="new issue..." onkeyup={ edit } ref="input">
 
-                    <button type="button" class="btn btn-primary" id="save_issue" onclick={ submit } >{ issue_button }</button>
+                    <button type="submit" class="btn btn-primary" id="save_issue" >Create issue</button>
                 </form>
             </div>
         </div>
@@ -21,14 +21,30 @@
 
     <script>
 
-        this.issue_button = "Create issue";
+        this.project = opts.project;
+        console.log("this.project: " + this.project);
+        console.log("opts.project: " + opts.project);
+        console.log(parent);
+        this.new_issue_name = "";
 
-        var tag = this;
-
-        tag.submit = function()
+        edit(e)
         {
+           this.new_issue_name = e.target.value;
+        }
 
-             console.log(tag.name);
+        add_issue(e)
+        {
+            e.preventDefault();
+
+            if (this.new_issue_name) {
+
+                var issue = new Issue();
+
+                issue.title = this.new_issue_name;
+                this.new_issue_name = this.refs.input.value = '';
+
+                this.project.add(issue);
+            }
         }
 
 

@@ -9,8 +9,8 @@ function Project(title,id,created_at,updated_at,active) {
     this.issues = [];
 }
 
-Project.prototype.add = function() {
-
+Project.prototype.addIssue = function(issue) {
+    this.issues.push(issue);
 };
 
 function createDateAndTime (){
