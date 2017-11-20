@@ -6,9 +6,8 @@
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-group project m-1">
-                    <li each={ projects } class="list-group-item list-group-item-action justify-content-between">
+                    <li each={ projects } class={ active : (title === active_project) } class="list-group-item list-group-item-action justify-content-between" onclick={ changeActiveProject }>
                     { title }
-                    <span class="badge badge-default badge-pill">0</span>
                     </li>
                 </ul>
             </div>
@@ -21,40 +20,43 @@
                 </form>
             </div>
         </div>
-
     </div>
 
     <issues project={ active_project }></issues>
-
-
 
     <script>
 
         this.projects = opts.projects;
 
-        this.active_project = this.projects[0];
-
         this.new_project_name = '';
 
-        edit(e) {
+        this.active_project = null;
+
+        changeActiveProject(e)
+        {
+            console.log(e);
+            this.active_project = e.item.title;
+        }
+
+        edit(e)
+        {
             this.new_project_name = e.target.value;
         }
 
-        add_project(e) {
+        add_project(e)
+        {
             e.preventDefault();
 
             if (this.new_project_name) {
                 var project = new Project();
                 project.title = this.new_project_name;
+                this.active_project = this.new_project_name;
+
                 this.projects.push(project);
-                save_to_localstorage();
+                localStorage.setItem('projects', JSON.stringify(this.projects));
 
                 this.new_project_name = this.refs.input.value = '';
             }
-        }
-
-        save_to_localstorage() {
-            localStorage.setItem('projects', JSON.stringify(this.projects));
         }
 
         this.on('before-mount', function() {
@@ -62,9 +64,8 @@
                 this.projects = JSON.parse(localStorage.getItem('projects'));
             } else {
                 console.log('localstorage empty');
+                this.projects = [];
             }
         })
-
     </script>
-
 </projects>

@@ -6,7 +6,7 @@
     background-color: #f7f7f7;
 }
 
-.list-group-item:first-child
+.active
 {
     background-color: cadetblue;
     color: white;

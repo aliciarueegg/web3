@@ -5,7 +5,7 @@ function Project(title,id,created_at,updated_at,active) {
     this.id = id || 0;
     this.created_at = created_at || createDateAndTime();
     this.updated_at = created_at || createDateAndTime();
-    this.active = active || true;
+    this.active = active || false;
     this.issues = [];
 }
 

@@ -8,43 +8,30 @@
             </div>
 
             <div class="col-md-8">
-                <form class="form-inline m-1" onsubmit={add_issue}>
+                <form class="form-inline m-1" id="issueForm">
 
-                    <label class="sr-only" for="inlineFormInput">Name</label>
-                    <input type="text" class="form-control" id="inlineFormInput" placeholder="new issue..." onkeyup={edit_issue} ref="input_issue">
+                    <label class="sr-only" for="newIssueName">Name</label>
+                    <input type="text" class="form-control" id="newIssueName" name="name" placeholder="new issue...">
 
-                    <button type="button" class="btn btn-primary">{ issue_button }</button>
+                    <button type="button" class="btn btn-primary" id="save_issue" onclick={ submit } >{ issue_button }</button>
                 </form>
             </div>
         </div>
     </div>
 
-
-
     <script>
 
-    this.issue_button = "Create issue";
+        this.issue_button = "Create issue";
 
-    edit_issue(e) {
-        this.issue_text = e.target.value
-    }
+        var tag = this;
 
-    add_issue(e){
-    e.preventDefault();
-    if(this.issue_text){
-        var issue = new Issue(this.issue_text);
-        this.parent.project.issues.push(issue);
+        tag.submit = function()
+        {
 
-        localStorage.setItem('projects', JSON.stringify(this.parent.parent.projects));
+             console.log(tag.name);
+        }
 
 
-
-        //Todo: Post the issue to the backend
-
-        // clear input field
-        this.issue_text = this.refs.input.value = '';
-    }
-    }
     </script>
 
 </new-issue>
