@@ -57,80 +57,52 @@
         {
             e.preventDefault();
 
-            this.active_project.addIssue(this.new_issue_name);
-
+            this.parent.projects.active_project.issues.push(new Issue(this.new_issue_name));
             this.parent.projects.save();
 
             this.new_project_name = this.refs.input.value = '';
-
         }
 
-        this.on('before-mount', function() {
-            console.log(this.parent);
-    })
+        this.on('before-mount', function(){
+            this.active_project = this.parent.projects.active_project;
+            this.issuesOfProject = (this.active_project != null) ? this.active_project.issues : []
+        });
 
         this.on('update', function() {
-            this.project = opts.active_project;
-            if (this.project != undefined)
+            if (this.parent.projects.active_project != null)
             {
-                this.issuesOfProject = this.project.issues;
+                this.issuesOfProject = this.parent.projects.active_project.issues;
             }
         });
 
         deleteIssue(e)
         {
-            var indexOfItem;
+            this.clientIssueId = e.item.client_issue_id;
+            this.activeProjectIssues = this.parent.projects.active_project.issues;
 
-            for (var i = 0; i < this.project.issues.length; i ++)
+            for (var  i = 0; i < this.activeProjectIssues.length; i++)
             {
-                if (this.project.issues[i].title == e.item.title)
-                {
-                    delete this.project.issues[i];
+                if (this.activeProjectIssues[i].client_issue_id == this.clientIssueId) {
+                    this.parent.projects.active_project.issues.splice(i, 1);
                 }
             }
 
-            this.project.issues = this.project.issues.filter(function(n){ return n != null });
-
-            this.projectsOfLocalstorage = JSON.parse(localStorage.getItem('projects'));
-
-            for (var  i = 0; i < this.projectsOfLocalstorage.length; i++)
-            {
-                if (this.projectsOfLocalstorage[i].title == this.project.title)
-                {
-                    this.projectsOfLocalstorage[i].issues = this.project.issues
-                }
-            }
-
-            localStorage.setItem('projects', JSON.stringify(this.projectsOfLocalstorage));
-
-            this.issuesOfProject = this.project.issues;
-
-            this.update();
+            this.parent.projects.save();
         }
 
         toggleDone(e)
         {
-            if (e.item.done == true)
-            {
-                e.item.done = false;
-            }
-            else
-            {
-                e.item.done = true;
-            }
+            this.clientIssueId = e.item.client_issue_id;
+            this.activeProjectIssues = this.parent.projects.active_project.issues;
 
-            this.projectsOfLocalstorage = JSON.parse(localStorage.getItem('projects'));
-
-            for (var  i = 0; i < this.projectsOfLocalstorage.length; i++)
+            for (var  i = 0; i < this.activeProjectIssues.length; i++)
             {
-                if (this.projectsOfLocalstorage[i].title == this.project.title) {
-                    this.projectsOfLocalstorage[i].issues = this.project.issues;
+                if (this.activeProjectIssues[i].client_issue_id == this.clientIssueId) {
+                    this.activeProjectIssues[i].done = !this.activeProjectIssues[i].done;
                 }
-
             }
 
-            localStorage.setItem('projects', JSON.stringify(this.projectsOfLocalstorage));
-            this.update();
+            this.parent.projects.save();
         }
 
     </script>

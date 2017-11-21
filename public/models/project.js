@@ -29,8 +29,6 @@ class Project {
             }
     }
 
-    toggleActive() {}
-
     uuid()
     {
         function s4() {
