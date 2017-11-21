@@ -19,6 +19,10 @@
   ],
   "dependencies": {
     "riot": "^3.7.4",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "bootstrap": "bootstrap4#^3.3.7",
+    "tether": "^1.4.1",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1"
   }
 }
