@@ -46,8 +46,7 @@
     </div>
 
     <script>
-
-    this.new_issue_name = "";
+        this.active_project = opts.active_project;
 
         edit(e)
         {
@@ -58,29 +57,17 @@
         {
             e.preventDefault();
 
-            if (this.new_issue_name) {
+            this.active_project.addIssue(this.new_issue_name);
 
-                var issue = new Issue();
+            this.parent.projects.save();
 
-                issue.title = this.new_issue_name;
-                this.new_issue_name = this.refs.input.value = '';
+            this.new_project_name = this.refs.input.value = '';
 
-
-                this.project.issues.push(issue);
-                this.issuesOfProject = this.project.issues;
-            }
-
-            this.projectsOfLocalstorage = JSON.parse(localStorage.getItem('projects'));
-
-            for (var  i = 0; i < this.projectsOfLocalstorage.length; i++)
-            {
-                this.projectsOfLocalstorage[i].issues.push(issue);
-            }
-
-            localStorage.setItem('projects', JSON.stringify(this.projectsOfLocalstorage));
-
-            this.update();
         }
+
+        this.on('before-mount', function() {
+            console.log(this.parent);
+    })
 
         this.on('update', function() {
             this.project = opts.active_project;

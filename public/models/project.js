@@ -1,14 +1,16 @@
 "use strict";
 
 class Project {
-    constructor(title,id,created_at,updated_at,active)
+    constructor(title,id,active)
     {
         this.title = title || "";
         this.id = id || 0;
-        this.created_at = created_at || createDateAndTime();
-        this.updated_at = created_at || createDateAndTime();
+        this.created_at = this.createDateAndTime();
+        this.updated_at = this.createDateAndTime();
         this.active = active || false;
         this.issues = [];
+        this.client_project_id = this.uuid();
+
     }
 
     createDateAndTime ()
@@ -19,11 +21,25 @@ class Project {
     }
 
 
-    addIssue(issue)
+    addIssue(new_issue_name)
     {
-        save();
+            if (new_issue_name) {
+                var issue = new Issue(new_issue_name);
+                this.issues.push(issue);
+            }
     }
 
     toggleActive() {}
+
+    uuid()
+    {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    }
 }
 

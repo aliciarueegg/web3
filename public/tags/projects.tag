@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-group project m-1">
-                    <li each={ projects } class={ active : (title === active_project_name) } class="list-group-item list-group-item-action justify-content-between" onclick={ changeActiveProject }>
+                    <li each={ projects.collection } class={ active : (active) } class="list-group-item list-group-item-action justify-content-between" onclick={ changeActiveProject }>
                     { title }
                     </li>
                 </ul>
@@ -22,62 +22,31 @@
         </div>
     </div>
 
-    <issues active_project={ active_project }></issues>
+    <issues active_project = { projects.active_project }></issues>
 
     <script>
 
-        this.projects = new Projects();
-
-        this.projects = null;
-
-        this.new_project_name = '';
-
-        this.active_project_name = null;
-
-        changeActiveProject(e)
-        {
-            this.active_project_name = e.item.title;
-            this.active_project = e.item;
-
-            this.update();
-        }
+        this.on('before-mount', function() {
+            this.projects = new Projects();
+        })
 
         edit(e)
         {
             this.new_project_name = e.target.value;
         }
 
+        changeActiveProject(e)
+        {
+            this.projects.setActiveProject(e.item.client_project_id);
+        }
+
         add_project(e)
         {
             e.preventDefault();
 
-            if (this.new_project_name) {
-                var project = new Project();
-                project.title = this.new_project_name;
-                this.active_project_name = this.new_project_name;
-                this.active_project = this.project;
+            this.projects.addProject(this.new_project_name);
 
-                this.projects.push(project);
-                localStorage.setItem('projects', JSON.stringify(this.projects));
-
-                this.new_project_name = this.refs.input.value = '';
-            }
-
-            this.update();
+            this.new_project_name = this.refs.input.value = '';
         }
-
-        this.on('before-mount', function() {
-
-    }
-            if (localStorage.getItem('projects') && localStorage.getItem('projects') != []) {
-                this.projects = JSON.parse(localStorage.getItem('projects'));
-                this.active_project_name = this.projects[0].title;
-                this.active_project = this.projects[0];
-            } else {
-                console.log('localstorage empty');
-                this.projects = [];
-            }
-        });
-
     </script>
 </projects>

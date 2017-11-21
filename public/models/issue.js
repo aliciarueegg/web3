@@ -1,16 +1,16 @@
 "use strict";
 
 class Issue {
-    constructor(title,done,updated_at,project_client_id,priority,id,client_id,project_id,created_at) {
+    constructor(title,done,project_client_id,priority,id,project_id) {
         this.title = title;
         this.done = done || false;
-        this.updated_at = updated_at || createDateAndTime();
+        this.updated_at = this.createDateAndTime();
         this.project_client_id = project_client_id;
         this.priority = priority || 0;
         this.id = id || 0;
-        this.client_id = client_id || uuid();
+        this.client_issue_id = this.uuid();
         this.project_id = project_id;
-        this.created_at = created_at || createDateAndTime();
+        this.created_at = this.createDateAndTime();
     }
 
     createDateAndTime (){
