@@ -26,18 +26,20 @@
 
     <script>
 
-        this.projects = opts.projects;
+        this.projects = new Projects();
+
+        this.projects = null;
 
         this.new_project_name = '';
 
         this.active_project_name = null;
 
-        this.active_project = null;
-
         changeActiveProject(e)
         {
             this.active_project_name = e.item.title;
             this.active_project = e.item;
+
+            this.update();
         }
 
         edit(e)
@@ -60,9 +62,13 @@
 
                 this.new_project_name = this.refs.input.value = '';
             }
+
+            this.update();
         }
 
         this.on('before-mount', function() {
+
+    }
             if (localStorage.getItem('projects') && localStorage.getItem('projects') != []) {
                 this.projects = JSON.parse(localStorage.getItem('projects'));
                 this.active_project_name = this.projects[0].title;
@@ -71,6 +77,7 @@
                 console.log('localstorage empty');
                 this.projects = [];
             }
-        })
+        });
+
     </script>
 </projects>

@@ -22,9 +22,7 @@
     <script>
 
         this.project = opts.project;
-        console.log("this.project: " + this.project);
-        console.log("opts.project: " + opts.project);
-        console.log(parent);
+
         this.new_issue_name = "";
 
         edit(e)
@@ -42,8 +40,9 @@
 
                 issue.title = this.new_issue_name;
                 this.new_issue_name = this.refs.input.value = '';
+                this.project.issues.push(issue);
 
-                this.project.add(issue);
+                riot.update()
             }
         }
 
