@@ -1,8 +1,7 @@
 <home>
     <div class="home-image">
         <div class="container">
-            <h1> Forgetting things? </h1>
-            <a href="#" class="btn btn-info" role="button">Create your own <b>To Do List</b></a>
-     </div>
+            <h1>Stop forgetting Things!</h1>
+        </div>
     </div>
 </home>

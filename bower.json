@@ -1,0 +1,28 @@
+{
+  "name": "todolist",
+  "description": "This is a to do list",
+  "main": "index.html",
+  "authors": [
+    "Kaspar",
+    "Louis",
+    "Alicia"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/aliciarueegg/web3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "riot": "^3.7.4",
+    "font-awesome": "^4.7.0",
+    "bootstrap": "bootstrap4#^3.3.7",
+    "tether": "^1.4.1",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1"
+  }
+}

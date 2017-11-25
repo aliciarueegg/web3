@@ -1,15 +1,15 @@
 .home-image
 {
-    background-image: url("../../images/To_Do_List.png");
+    background-image: url("../images/to_do_list.png");
     height: 500px;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    text-align: center;
-    padding: 200px;
+    padding: 250px;
 }
 
 .home-button
 {
     background-color:pink;
 }
+

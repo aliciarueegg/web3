@@ -8,18 +8,45 @@
             </div>
 
             <div class="col-md-8">
-                <form class="form-inline m-1">
+                <form class="form-inline m-1" id="issueForm" onsubmit={ add_issue }>
 
-                    <label class="sr-only" for="inlineFormInput">Name</label>
-                    <input type="text" class="form-control" id="inlineFormInput" placeholder="new issue...">
+                    <label class="sr-only" for="newIssueName">Name</label>
+                    <input type="text" class="form-control" id="newIssueName" name="name" placeholder="new issue..." onkeyup={ edit } ref="input">
 
-                    <button type="button" class="btn btn-primary">{ issue_button }</button>
+                    <button type="submit" class="btn btn-primary" id="save_issue" >Create issue</button>
                 </form>
             </div>
         </div>
     </div>
+
     <script>
-        this.issue_button = "Create issue";
+
+        this.project = opts.project;
+
+        this.new_issue_name = "";
+
+        edit(e)
+        {
+           this.new_issue_name = e.target.value;
+        }
+
+        add_issue(e)
+        {
+            e.preventDefault();
+
+            if (this.new_issue_name) {
+
+                var issue = new Issue();
+
+                issue.title = this.new_issue_name;
+                this.new_issue_name = this.refs.input.value = '';
+                this.project.issues.push(issue);
+
+                riot.update()
+            }
+        }
+
+
     </script>
 
 </new-issue>

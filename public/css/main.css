@@ -1,9 +1,10 @@
-@import "_nav.css";
 @import "_home.css";
 @import "_heading.css";
 @import "_button.css";
-@import "_current-projects.css";
-@import "_current-issues.css";
-@import "_new-issues.css";
+@import "_projects.css";
+@import "_issues.css";
+@import "_new-issue.css";
 
-
+.container {
+    border-radius: 0.5em;
+}
