@@ -5,34 +5,33 @@
         <meta charset="utf-8">
         <title>Issue tracker</title>
 
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-        <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="./components/jquery/dist/jquery.min.js"></script>
+        <script src="./components/jquery-ui/jquery-ui.min.js"></script>
+        <script src="./components/tether/dist/js/tether.min.js"></script>
+        <script src="./components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./components/riot/riot.min.js"></script>
+        <script src="./components/riot/riot+compiler.min.js"></script>
 
         <script src="./models/projects.js"></script>
         <script src="./models/project.js"></script>
         <script src="./models/issue.js"></script>
 
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="./components/jquery-ui/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="./components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./components/font-awesome/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
-        <link href="css/main.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/main.css">
+
     </head>
 
     <body>
         <home></home>
         <projects></projects>
 
-        <script src="components/riot/riot.min.js"></script>
-        <script src="components/riot/riot+compiler.min.js"></script>
-
-        <script type="riot/tag" src="tags/home.tag"></script>
-        <script type="riot/tag" src="tags/projects.tag"></script>
-        <script type="riot/tag" src="tags/issues.tag"></script>
-        <script type="riot/tag" src="tags/new-issue.tag"></script>
+        <script type="riot/tag" src="./tags/home.tag"></script>
+        <script type="riot/tag" src="./tags/projects.tag"></script>
+        <script type="riot/tag" src="./tags/issues.tag"></script>
+        <script type="riot/tag" src="./tags/new-issue.tag"></script>
 
         <script>
             riot.mount('home');

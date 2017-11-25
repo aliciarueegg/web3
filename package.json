@@ -5,7 +5,9 @@
   "author": "Kaspar, Louis, Alicia",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "browser-sync": "^2.18.13",
     "express": "^4.16.2",
+    "gulp": "^3.9.1",
     "morgan": "^1.9.0",
     "riot": "3.7.3",
     "riotgear": "^3.5.0"
