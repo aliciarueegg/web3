@@ -1,6 +1,6 @@
 *.swp
 
-.idea/
+.idea
 .idea/workspace.xml
 
 lib-cov
