@@ -5,3 +5,7 @@
     padding: 30px;
     background-color: #f7f7f7;
 }
+
+td.done {
+    text-decoration: line-through;
+}

@@ -47,31 +47,26 @@
             delete postProject.issues;
             var thisProjects = this.projects;
             $.ajax({
-            url: baseURL + "projects",
-            method: "POST",
-            data: JSON.stringify(postProject),
-            dataType:"JSON",
-            contentType:"application/json",
-            success: function(data){
-                var project = data;
-
-                thisProjects.addProject(project);
-                riot.update();
-
-            },
-            complete: function() {
-                console.log('completed');
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                console.log('status: ' + xhr.status);
-                console.log('ERROR: ' + thrownError);
-
-    }
+                url: baseURL + "projects",
+                method: "POST",
+                data: JSON.stringify(postProject),
+                dataType:"JSON",
+                contentType:"application/json",
+                success: function(data) {
+                    var project = data;
+                    thisProjects.addProject(project);
+                    riot.update();
+                },
+                complete: function() {
+                    console.log('completed');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log('status: ' + xhr.status);
+                    console.log('ERROR: ' + thrownError);
+                }
             });
-
-
-
             this.new_project_name = this.refs.input.value = '';
         }
+
     </script>
 </projects>
