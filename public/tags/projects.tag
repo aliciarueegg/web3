@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-group project m-1">
-                    <li each={ projects.collection } class={ active : (active) } class="list-group-item list-group-item-action justify-content-between" onclick={ changeActiveProject }>
+                    <li each={ projects.collection } class="{ active : (active) } list-group-item list-group-item-action justify-content-between" onclick={ changeActiveProject }>
                     { title }
                     </li>
                 </ul>
