@@ -9,7 +9,7 @@ class Project {
         this.updated_at = this.createDateAndTime();
         this.active = active || false;
         this.issues = [];
-        this.client_project_id = this.uuid();
+        this.client_id = this.uuid();
 
     }
 
@@ -17,7 +17,7 @@ class Project {
     {
         var date = new Date();
         var month = date.getMonth()+1;
-        return date.getFullYear() + "-" + month + "-" + date.getDay() +  "T" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + "Z";
+        return date.getFullYear() + "-" + month + "-" + date.getDate() +  "T" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "." + date.getMilliseconds() + "Z";
     }
 
 

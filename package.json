@@ -9,6 +9,7 @@
     "browser-sync": "^2.18.13",
     "express": "^4.16.2",
     "gulp": "^3.9.1",
+    "gulp-install": "^1.1.0",
     "morgan": "^1.9.0",
     "riot": "3.7.3",
     "riotgear": "^3.5.0"

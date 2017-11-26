@@ -37,14 +37,39 @@
 
         changeActiveProject(e)
         {
-            this.projects.setActiveProject(e.item.client_project_id);
+            this.projects.setActiveProject(e.item.client_id);
         }
 
         add_project(e)
         {
             e.preventDefault();
+            var postProject = new Project(this.new_project_name);
+            delete postProject.issues;
+            var thisProjects = this.projects;
+            $.ajax({
+            url: baseURL + "projects",
+            method: "POST",
+            data: JSON.stringify(postProject),
+            dataType:"JSON",
+            contentType:"application/json",
+            success: function(data){
+                var project = data;
 
-            this.projects.addProject(this.new_project_name);
+                thisProjects.addProject(project);
+                riot.update();
+
+            },
+            complete: function() {
+                console.log('completed');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log('status: ' + xhr.status);
+                console.log('ERROR: ' + thrownError);
+
+    }
+            });
+
+
 
             this.new_project_name = this.refs.input.value = '';
         }
