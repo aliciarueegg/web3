@@ -6,10 +6,16 @@
     background-color: #f7f7f7;
 }
 
-.active
+li.list-group-item.active,
+li.list-group-item.active:hover
 {
-    background-color: cadetblue;
+    background-color: #115D76;
     color: white;
+}
+
+li.list-group-item:hover
+{
+    font-weight: bold;
 }
 
 input#inlineFormInput
