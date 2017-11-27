@@ -15,13 +15,13 @@
                         <label>Priority</label>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input name="priority" class="form-check-input" type="radio" id="priority_normal" value="Normal" checked> Normal
+                                <input name="priority" class="form-check-input" type="radio" id="priority_normal" value="2" checked> 2
                             </label>
                             <label class="form-check-label">
-                                <input name="priority" class="form-check-input" type="radio" id="priority_high" value="High"> High
+                                <input name="priority" class="form-check-input" type="radio" id="priority_high" value="3"> 3
                             </label>
                             <label class="form-check-label">
-                                <input name="priority" class="form-check-input" type="radio" id="priority_low" value="Low"> Low
+                                <input name="priority" class="form-check-input" type="radio" id="priority_low" value="1"> 1
                             </label>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     <th><input id="checkBox_issue1" type="checkbox" checked={ done } onclick = { toggleDone } ></th>
                     <td class="{ done: done }"> { priority } </td>
                     <td class="{ done: done }"> { title } </td>
-                    <td class="{ done: done }"> { due_date } </td>
+                    <td class="{ done: done }"> { due_date.substring(0,10) } </td>
                     <td><button onclick = { deleteIssue }><i class="fa fa-trash"></i></button></td>
                 </tr>
             </tbody>
@@ -75,43 +75,41 @@
             this.new_issue_name = e.target.value;
         }
 
-        add_project(e)
+        get_due_date() {
+            var t = "T00:00:00.000Z";
+            if ($("#due_date").val()) {
+                return $("#due_date").val() + t;
+            }
+            var d = new Date();
+            return 1900 + d.getYear() + "-" + d.getMonth() + "-" + d.getDate() + t;
+        }
+
+        add_issue(e)
         {
             e.preventDefault();
-            var postProject = new Project(this.new_project_name);
-            delete postProject.issues;
-            var thisProjects = this.projects;
+            var thisProjects = this.parent.projects;
+            var issue = new Issue(this.new_issue_name);
+            issue.due_date = this.get_due_date();
+            issue.priority = $("input[name=priority]:checked").val();
             $.ajax({
-                url: baseURL + "projects",
+                url: baseURL + "projects/" + this.parent.projects.active_project.id + "/issues",
                 method: "POST",
-                data: JSON.stringify(postProject),
+                data: JSON.stringify(issue),
                 dataType:"JSON",
                 contentType:"application/json",
                 success: function(data) {
-                    var project = data;
-                    thisProjects.addProject(project);
+                    thisProjects.active_project.issues.push(data);
+                    thisProjects.save();
                     riot.update();
                 },
                 complete: function() {
-                    console.log('completed');
+                    console.log('Ajax call completed');
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log('status: ' + xhr.status);
                     console.log('ERROR: ' + thrownError);
                 }
             });
-            this.new_project_name = this.refs.input.value = '';
-        }
-
-        add_issue(e)
-        {
-            e.preventDefault();
-            var issue = new Issue(this.new_issue_name);
-            issue.due_date = $("#due_date").val() || "Some Day...";
-            issue.priority = $("input[name=priority]:checked").val();
-            console.log(issue.priority);
-            this.parent.projects.active_project.issues.push(issue);
-            this.parent.projects.save();
 
             this.new_project_name = this.refs.input.value = '';
         }

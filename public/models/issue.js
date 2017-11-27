@@ -5,7 +5,7 @@ class Issue {
         this.title = title;
         this.done = done || false;
         this.updated_at = this.createDateAndTime();
-        this.project_client_id = project_client_id;
+        this.project_client_id = this.uuid();
         this.priority = priority || 0;
         this.id = id || 0;
         this.client_id = this.uuid();
