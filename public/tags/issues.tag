@@ -129,11 +129,27 @@
         deleteIssue(e)
         {
             this.clientIssueId = e.item.client_id;
-            this.activeProjectIssues = this.parent.projects.active_project.issues;
+            var thisProject = this.parent.projects.active_project;
 
-            for (var  i = 0; i < this.activeProjectIssues.length; i++)
+            for (var  i = 0; i < thisProject.issues.length; i++)
             {
-                if (this.activeProjectIssues[i].client_id == this.clientIssueId) {
+                var issue = thisProject.issues[i];
+
+                if (issue.client_id == this.clientIssueId) {
+
+                    $.ajax({
+                        url: baseURL + "projects/" + thisProject.id + "/issues/" + issue.id,
+                        method: "DELETE",
+                        dataType:"JSON",
+                        complete: function() {
+                            console.log('Ajax call completed');
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log('status: ' + xhr.status);
+                            console.log('ERROR: ' + thrownError);
+                        }
+                    });
+
                     this.parent.projects.active_project.issues.splice(i, 1);
                 }
             }
@@ -158,9 +174,6 @@
                         data: JSON.stringify(issue),
                         dataType:"JSON",
                         contentType:"application/json",
-                        success: function(data) {
-                            console.log(data);
-                        },
                         complete: function() {
                             console.log('Ajax call completed');
                         },
