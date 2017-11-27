@@ -3,20 +3,42 @@
         <h2> New Issue </h2>
 
         <div class="row">
-            <div class="col-md-4">
-                <input type="date" name="date" id="due_date">
-            </div>
+            <form id="issueForm1" onsubmit={ add_issue }>
+                <div class="form-row">
 
-            <div class="col-md-8">
-                <form class="form-inline m-1" id="issueForm" onsubmit={ add_issue }>
+                    <div class="form-group col-md-3">
+                        <label for="due_date">Due Date</label>
+                        <input class="form-control" type="date" name="date" id="due_date">
+                    </div>
 
-                    <label class="sr-only" for="newIssueName">Name</label>
-                    <input type="text" class="form-control" id="newIssueName" name="name" placeholder="new issue..." onkeyup={ edit } ref="input">
+                    <div class="form-group col-md-3">
+                        <label>Priority</label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input name="priority" class="form-check-input" type="radio" id="priority_normal" value="Normal" checked> Normal
+                            </label>
+                            <label class="form-check-label">
+                                <input name="priority" class="form-check-input" type="radio" id="priority_high" value="High"> High
+                            </label>
+                            <label class="form-check-label">
+                                <input name="priority" class="form-check-input" type="radio" id="priority_low" value="Low"> Low
+                            </label>
+                        </div>
+                    </div>
 
-                    <button type="submit" class="btn btn-primary" id="save_issue" >Create issue</button>
-                </form>
-            </div>
+                    <div class="form-group col-md-6">
+                        <label for="newIssueName">Title</label>
+
+                        <div class="form-inline">
+                            <input type="text" class="form-control" id="newIssueName" name="name" placeholder="new issue..." onkeyup={ edit } ref="input">
+                            <button type="submit" class="btn btn-primary" id="save_issue" >Create issue</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
         </div>
+
     </div>
 
     <div if={ opts.active_project } class="container" id="current-issues">
@@ -86,6 +108,8 @@
             e.preventDefault();
             var issue = new Issue(this.new_issue_name);
             issue.due_date = $("#due_date").val() || "Some Day...";
+            issue.priority = $("input[name=priority]:checked").val();
+            console.log(issue.priority);
             this.parent.projects.active_project.issues.push(issue);
             this.parent.projects.save();
 

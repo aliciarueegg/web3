@@ -9,3 +9,7 @@
 td.done {
     text-decoration: line-through;
 }
+
+div#new-issues label.form-check-label {
+    margin: 0.5em;
+}
