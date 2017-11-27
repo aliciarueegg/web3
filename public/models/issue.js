@@ -30,5 +30,4 @@ class Issue {
             s4() + '-' + s4() + s4() + s4();
     }
 
-    toggleDone() { }
 }

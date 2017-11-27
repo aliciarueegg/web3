@@ -144,12 +144,31 @@
         toggleDone(e)
         {
             this.clientIssueId = e.item.client_id;
-            this.activeProjectIssues = this.parent.projects.active_project.issues;
+            var thisProject = this.parent.projects.active_project;
 
-            for (var  i = 0; i < this.activeProjectIssues.length; i++)
+            for (var  i = 0; i < thisProject.issues.length; i++)
             {
-                if (this.activeProjectIssues[i].client_id == this.clientIssueId) {
-                    this.activeProjectIssues[i].done = !this.activeProjectIssues[i].done;
+                var issue = thisProject.issues[i];
+
+                if (issue.client_id == this.clientIssueId) {
+                    issue.done = !issue.done;
+                    $.ajax({
+                        url: baseURL + "projects/" + thisProject.id + "/issues/" + issue.id,
+                        method: "PUT",
+                        data: JSON.stringify(issue),
+                        dataType:"JSON",
+                        contentType:"application/json",
+                        success: function(data) {
+                            console.log(data);
+                        },
+                        complete: function() {
+                            console.log('Ajax call completed');
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log('status: ' + xhr.status);
+                            console.log('ERROR: ' + thrownError);
+                        }
+                    });
                 }
             }
 
