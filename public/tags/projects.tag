@@ -8,7 +8,7 @@
                 <ul class="list-group project m-1">
                     <li each={ projects.collection } class="{ active : (active) } list-group-item list-group-item-action justify-content-between" onclick={ changeActiveProject }>
                     { title }
-                    </li>
+    <button class="pull-right" onclick = { delete_project }><i class="fa fa-trash"></i></button></li>
                 </ul>
             </div>
 
@@ -68,5 +68,66 @@
             this.new_project_name = this.refs.input.value = '';
         }
 
+    delete_project(e)
+    {
+    e.preventDefault();
+
+    var deletionID = e.item.client_id;
+    console.log(deletionID);
+    var p_length = this.projects.collection.length;
+    var j;
+    for(var i = 0; i < p_length; i++){
+
+        var project = this.projects.collection[i];
+
+        if(project.client_id == deletionID){
+        j = i;
+
+        i_length = project.issues.length;
+        
+        for(var k = 0; k < i_length; k ++){
+            debugger;
+            $.ajax({
+            url: baseURL + "projects/" + project.id + "/issues/" + project.issues[k].id,
+            method: "DELETE",
+            dataType:"JSON",
+            complete: function() {
+            console.log('Ajax call completed ISSUE DELETE');
+            },
+            success: function() {
+                console.log(k);
+                if (k == i_length) {
+                $.ajax({
+                url: baseURL + "projects/" + project.id,
+                method: "DELETE",
+                dataType:"JSON",
+                complete: function() {
+                console.log('Ajax call completed DELETE');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                console.log('status: ' + xhr.status);
+                console.log('ERROR: ' + thrownError);
+                }
+                });
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+            console.log('status: ' + xhr.status);
+            console.log('ERROR: ' + thrownError);
+            }
+            });
+        }
+        riot.update();
+
+
+        }
+    }
+    if(j){
+        this.projects.collection.splice(j,1);
+    }
+
+    this.projects.save();
+
+    }
     </script>
 </projects>
