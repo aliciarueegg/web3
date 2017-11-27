@@ -82,51 +82,77 @@
 
         if(project.client_id == deletionID){
         j = i;
-
-        i_length = project.issues.length;
         
-        for(var k = 0; k < i_length; k ++){
-            debugger;
-            $.ajax({
-            url: baseURL + "projects/" + project.id + "/issues/" + project.issues[k].id,
-            method: "DELETE",
-            dataType:"JSON",
-            complete: function() {
-            console.log('Ajax call completed ISSUE DELETE');
-            },
-            success: function() {
-                console.log(k);
-                if (k == i_length) {
-                $.ajax({
-                url: baseURL + "projects/" + project.id,
-                method: "DELETE",
-                dataType:"JSON",
-                complete: function() {
-                console.log('Ajax call completed DELETE');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                console.log('status: ' + xhr.status);
-                console.log('ERROR: ' + thrownError);
-                }
-                });
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-            console.log('status: ' + xhr.status);
-            console.log('ERROR: ' + thrownError);
-            }
-            });
-        }
+        i_length = project.issues.length;
+    var self = this
+        if(i_length == 0){
+            console.log("no issues to delete");
+
+    $.ajax({
+    url: baseURL + "projects/" + project.id,
+    method: "DELETE",
+    dataType:"JSON",
+    complete: function() {
+    console.log('Ajax call completed DELETE');
+    },
+    success:function(){
+        self.projects.collection.splice(j,1);
+        self.projects.save();
         riot.update();
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+    console.log('status: ' + xhr.status);
+    console.log('ERROR: ' + thrownError);
+    }
+    });
+        }
+        else{
+    console.log("ISSUES to DELETE");
+    for(var k = 0; k < i_length; k ++){
+
+    $.ajax({
+    url: baseURL + "projects/" + project.id + "/issues/" + project.issues[k].id,
+    method: "DELETE",
+    dataType:"JSON",
+    complete: function() {
+    console.log('Ajax call completed ISSUE DELETE');
+    },
+    success: function() {
+    console.log(k);
+    if (k == i_length) {
+    $.ajax({
+    url: baseURL + "projects/" + project.id,
+    method: "DELETE",
+    dataType:"JSON",
+    complete: function() {
+    console.log('Ajax call completed DELETE');
+    },
+    success:function(){
+    self.projects.collection.splice(j,1);
+    self.projects.save();
+    riot.update();
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+    console.log('status: ' + xhr.status);
+    console.log('ERROR: ' + thrownError);
+    }
+    });
+    }
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+    console.log('status: ' + xhr.status);
+    console.log('ERROR: ' + thrownError);
+    }
+    });
+    }
+    }
+
+
 
 
         }
     }
-    if(j){
-        this.projects.collection.splice(j,1);
-    }
 
-    this.projects.save();
 
     }
     </script>
