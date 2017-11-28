@@ -15,6 +15,6 @@
     "riotgear": "^3.5.0"
   },
   "scripts": {
-    "start": "node todo_server.js"
+    "start": "node public/todo_server.js"
   }
 }
