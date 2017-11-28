@@ -1,1 +1,1 @@
-const baseURL = "http://zhaw-issue-tracker-api.herokuapp.com/api/";
+const baseURL = "https://zhaw-issue-tracker-api.herokuapp.com/api/";
