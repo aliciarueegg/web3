@@ -8,7 +8,7 @@
                 <ul class="list-group project m-1">
                     <li each={ projects.collection } class="{ active : (active) } list-group-item list-group-item-action justify-content-between" onclick={ changeActiveProject }>
                     { title }
-                    </li>
+    <button class="pull-right" onclick = { delete_project }><i class="fa fa-trash"></i></button></li>
                 </ul>
             </div>
 
@@ -37,16 +37,123 @@
 
         changeActiveProject(e)
         {
-            this.projects.setActiveProject(e.item.client_project_id);
+            this.projects.setActiveProject(e.item.client_id);
         }
 
         add_project(e)
         {
             e.preventDefault();
-
-            this.projects.addProject(this.new_project_name);
-
+            var postProject = new Project(this.new_project_name);
+            delete postProject.issues;
+            var thisProjects = this.projects;
+            $.ajax({
+                url: baseURL + "projects",
+                method: "POST",
+                data: JSON.stringify(postProject),
+                dataType:"JSON",
+                contentType:"application/json",
+                success: function(data) {
+                    var project = data;
+                    thisProjects.addProject(project);
+                    riot.update();
+                },
+                complete: function() {
+                    console.log('completed');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log('status: ' + xhr.status);
+                    console.log('ERROR: ' + thrownError);
+                }
+            });
             this.new_project_name = this.refs.input.value = '';
         }
+
+    delete_project(e)
+    {
+    e.preventDefault();
+
+    var deletionID = e.item.client_id;
+    console.log(deletionID);
+    var p_length = this.projects.collection.length;
+    var j;
+    for(var i = 0; i < p_length; i++){
+
+        var project = this.projects.collection[i];
+
+        if(project.client_id == deletionID){
+        j = i;
+        
+        i_length = project.issues.length;
+    var self = this
+        if(i_length == 0){
+            console.log("no issues to delete");
+
+    $.ajax({
+    url: baseURL + "projects/" + project.id,
+    method: "DELETE",
+    dataType:"JSON",
+    complete: function() {
+    console.log('Ajax call completed DELETE');
+    },
+    success:function(){
+        self.projects.collection.splice(j,1);
+        self.projects.save();
+        riot.update();
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+    console.log('status: ' + xhr.status);
+    console.log('ERROR: ' + thrownError);
+    }
+    });
+        }
+        else{
+    console.log("ISSUES to DELETE");
+    for(var k = 0; k < i_length; k ++){
+
+    $.ajax({
+    url: baseURL + "projects/" + project.id + "/issues/" + project.issues[k].id,
+    method: "DELETE",
+    dataType:"JSON",
+    complete: function() {
+    console.log('Ajax call completed ISSUE DELETE');
+    },
+    success: function() {
+    console.log(k);
+    if (k == i_length) {
+    $.ajax({
+    url: baseURL + "projects/" + project.id,
+    method: "DELETE",
+    dataType:"JSON",
+    complete: function() {
+    console.log('Ajax call completed DELETE');
+    },
+    success:function(){
+    self.projects.collection.splice(j,1);
+    self.projects.save();
+    riot.update();
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+    console.log('status: ' + xhr.status);
+    console.log('ERROR: ' + thrownError);
+    }
+    });
+    }
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+    console.log('status: ' + xhr.status);
+    console.log('ERROR: ' + thrownError);
+    }
+    });
+    }
+    }
+
+
+
+
+        }
+    }
+
+
+    }
     </script>
 </projects>

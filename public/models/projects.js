@@ -1,6 +1,5 @@
 class Projects {
-    constructor()
-    {
+    constructor() {
         this.collection = [];
         this.local_storage_key = 'projects';
         this.active_project = null;
@@ -8,11 +7,14 @@ class Projects {
         this.setActiveProject();
     }
 
-    save()
-    {
+    save() {
         //this.synchronizeCollectionWithActiveProject();
         localStorage.setItem(this.local_storage_key, JSON.stringify(this.collection));
+
     }
+
+
+
 
     synchronizeCollectionWithActiveProject()
     {
@@ -49,7 +51,7 @@ class Projects {
                 {
                     var project = this.collection[i];
 
-                    if (project.client_project_id == client_project_id)
+                    if (project.client_id == client_project_id)
                     {
                         project.active = true;
 
@@ -70,13 +72,15 @@ class Projects {
 
     }
 
-    addProject(new_project_name)
+    addProject(project)
     {
-        if (new_project_name) {
-            var project = new Project(new_project_name);
+        if (project) {
+
+            project.issues = [];
+
             this.collection.push(project);
 
-            this.setActiveProject(project.client_project_id);
+            this.setActiveProject(project.client_id);
 
             this.save();
         }

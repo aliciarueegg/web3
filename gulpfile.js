@@ -10,8 +10,8 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch("*.css").on('change', bs.reload);
-    gulp.watch("*.html").on('change', bs.reload);
-    gulp.watch("*.tag").on('change', bs.reload);
-    gulp.watch("*.js").on('change', bs.reload);
+    gulp.watch("public/*.css").on('change', bs.reload);
+    gulp.watch("public/*.html").on('change', bs.reload);
+    gulp.watch("public/tags/*.tag").on('change', bs.reload);
+    gulp.watch("public/models/*.js").on('change', bs.reload);
 });
